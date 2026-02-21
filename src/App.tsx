@@ -1,10 +1,11 @@
-import React from 'react';
+import Hero from './components/Hero';
+import Features from './components/Features';
 
 const App = () => {
     return (
         <div>
-            <h1>KYRAI Showcase</h1>
-            <p>Welcome to the KYRAI application!</p>
+            <Hero />
+            <Features />
         </div>
     );
 };

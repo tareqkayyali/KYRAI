@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Hero: React.FC = () => {
+const Hero = () => {
     return (
         <div className="hero">
             <h1>Welcome to KYRAI!</h1>

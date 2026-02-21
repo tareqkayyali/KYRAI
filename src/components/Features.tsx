@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Features: React.FC = () => {
+const Features = () => {
     return (
         <section className="features">
             <h2>Features</h2>

@@ -26,5 +26,8 @@ jspm_packages
 # dotenv environment variable files
 .env
 
+# Build output
+dist
+
 # MacOS
 .DS_Store
