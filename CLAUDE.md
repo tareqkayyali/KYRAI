@@ -16,6 +16,7 @@
 - **Vite 6** — Build tool and dev server
 - **ESLint 9** — Linting (flat config with TypeScript + React hooks plugins)
 - **Prettier 3** — Code formatting (4-space indent, single quotes, trailing commas)
+- **Vitest 4** — Unit testing (jsdom environment, React Testing Library)
 - **Node.js / npm** — Package management and runtime
 
 ## Project Structure
@@ -36,9 +37,14 @@ KYRAI/
     ├── index.css           # Tailwind CSS entry (@import "tailwindcss")
     ├── vite-env.d.ts       # Vite client type declarations
     ├── App.tsx             # Root component — composes Hero + Features
+    ├── App.test.tsx        # App integration test
+    ├── test/
+    │   └── setup.ts        # Vitest setup (jest-dom matchers)
     └── components/
         ├── Features.tsx    # Features list section
-        └── Hero.tsx        # Hero/landing section with CTA
+        ├── Features.test.tsx
+        ├── Hero.tsx        # Hero/landing section with CTA
+        └── Hero.test.tsx
 ```
 
 ## Development Commands
@@ -52,6 +58,8 @@ npm run lint      # Run ESLint
 npm run lint:fix  # Run ESLint with auto-fix
 npm run format    # Format all source files with Prettier
 npm run format:check  # Check formatting without writing
+npm test          # Run all tests once (vitest run)
+npm run test:watch  # Run tests in watch mode
 ```
 
 ## Architecture and Conventions
@@ -103,6 +111,15 @@ export default ComponentName;
 - Avoid custom CSS files — prefer Tailwind utilities and composing classes
 - Use `@theme` in `src/index.css` to extend the default design tokens if needed
 
+### Testing
+
+- **Vitest** with jsdom environment (configured in `vite.config.ts` under `test`)
+- **React Testing Library** for rendering components
+- **jest-dom matchers** available globally via `src/test/setup.ts`
+- Test files live next to source files: `ComponentName.test.tsx`
+- Use `describe`/`it`/`expect` from Vitest
+- Query elements using accessible roles (`getByRole`, `getByText`)
+
 ### TypeScript
 
 - Strict mode enabled (`strict: true` in tsconfig.app.json)
@@ -145,9 +162,9 @@ export default ComponentName;
 4. Keep components focused — one responsibility per component
 5. Use TypeScript types; avoid `any`
 6. Do not add `import React` — the `react-jsx` transform handles it
-7. Do not commit `.env` files, `node_modules/`, or `dist/`
+7. Add a `ComponentName.test.tsx` file alongside each new component
+8. Do not commit `.env` files, `node_modules/`, or `dist/`
 
 ## Current Gaps
 
-- No test framework configured
 - No CI/CD pipeline
