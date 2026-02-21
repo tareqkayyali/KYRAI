@@ -14,6 +14,8 @@
 - **TypeScript 5.7** — Static typing (`.tsx` files, strict mode enabled)
 - **Tailwind CSS 4** — Utility-first styling (via `@tailwindcss/vite` plugin)
 - **Vite 6** — Build tool and dev server
+- **ESLint 9** — Linting (flat config with TypeScript + React hooks plugins)
+- **Prettier 3** — Code formatting (4-space indent, single quotes, trailing commas)
 - **Node.js / npm** — Package management and runtime
 
 ## Project Structure
@@ -25,6 +27,8 @@ KYRAI/
 ├── vite.config.ts          # Vite configuration (Tailwind + React plugins, port 3000)
 ├── tsconfig.json           # TypeScript project references
 ├── tsconfig.app.json       # TypeScript compiler options (strict, react-jsx)
+├── eslint.config.js        # ESLint flat config (TS + React hooks + React Refresh)
+├── .prettierrc             # Prettier config (4-space, single quotes, trailing commas)
 ├── CLAUDE.md               # This file
 ├── .gitignore              # Ignores node_modules, dist, .env, logs
 └── src/
@@ -44,6 +48,10 @@ npm install       # Install dependencies
 npm run dev       # Start Vite dev server (localhost:3000)
 npm run build     # Type-check (tsc -b) then build for production
 npm run preview   # Preview production build locally
+npm run lint      # Run ESLint
+npm run lint:fix  # Run ESLint with auto-fix
+npm run format    # Format all source files with Prettier
+npm run format:check  # Check formatting without writing
 ```
 
 ## Architecture and Conventions
@@ -78,12 +86,14 @@ const ComponentName = () => {
 export default ComponentName;
 ```
 
-### Code Style
+### Code Style (enforced by Prettier + ESLint)
 
 - **Indentation:** 4 spaces
 - **Quotes:** Single quotes for imports, double quotes in JSX attributes
 - **Semicolons:** Yes
+- **Trailing commas:** Yes (all)
 - **Arrow functions** for component definitions
+- Run `npm run format` before committing to ensure consistent formatting
 
 ### Styling
 
@@ -124,6 +134,8 @@ export default ComponentName;
 | `src/index.css`              | Tailwind CSS entry point             |
 | `vite.config.ts`             | Build and dev server configuration   |
 | `tsconfig.app.json`          | TypeScript compiler settings         |
+| `eslint.config.js`          | ESLint flat config                   |
+| `.prettierrc`               | Prettier formatting rules            |
 
 ## Guidelines for Contributors
 
@@ -138,5 +150,4 @@ export default ComponentName;
 ## Current Gaps
 
 - No test framework configured
-- No linting (ESLint/Prettier)
 - No CI/CD pipeline
