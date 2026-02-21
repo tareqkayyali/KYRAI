@@ -12,6 +12,7 @@
 
 - **React 19** — UI component library
 - **TypeScript 5.7** — Static typing (`.tsx` files, strict mode enabled)
+- **Tailwind CSS 4** — Utility-first styling (via `@tailwindcss/vite` plugin)
 - **Vite 6** — Build tool and dev server
 - **Node.js / npm** — Package management and runtime
 
@@ -21,13 +22,14 @@
 KYRAI/
 ├── index.html              # Vite entry point (loads src/main.tsx)
 ├── package.json            # Dependencies and scripts
-├── vite.config.ts          # Vite configuration (React plugin, port 3000)
+├── vite.config.ts          # Vite configuration (Tailwind + React plugins, port 3000)
 ├── tsconfig.json           # TypeScript project references
 ├── tsconfig.app.json       # TypeScript compiler options (strict, react-jsx)
 ├── CLAUDE.md               # This file
 ├── .gitignore              # Ignores node_modules, dist, .env, logs
 └── src/
     ├── main.tsx            # React DOM root — renders <App /> in StrictMode
+    ├── index.css           # Tailwind CSS entry (@import "tailwindcss")
     ├── vite-env.d.ts       # Vite client type declarations
     ├── App.tsx             # Root component — composes Hero + Features
     └── components/
@@ -59,7 +61,7 @@ npm run preview   # Preview production build locally
 |-------------------|-----------------|--------------------|
 | Component files   | PascalCase.tsx  | `Hero.tsx`         |
 | Component names   | PascalCase      | `const Hero`       |
-| CSS classes       | lowercase/kebab | `className="hero"` |
+| CSS classes       | Tailwind utilities | `className="text-lg font-bold"` |
 | Directories       | lowercase       | `components/`      |
 
 ### Component Template
@@ -67,8 +69,8 @@ npm run preview   # Preview production build locally
 ```tsx
 const ComponentName = () => {
     return (
-        <section className="component-class">
-            {/* content */}
+        <section className="mx-auto max-w-3xl px-4 py-16">
+            {/* content styled with Tailwind utility classes */}
         </section>
     );
 };
@@ -82,6 +84,14 @@ export default ComponentName;
 - **Quotes:** Single quotes for imports, double quotes in JSX attributes
 - **Semicolons:** Yes
 - **Arrow functions** for component definitions
+
+### Styling
+
+- **Tailwind CSS 4** via `@tailwindcss/vite` plugin — no `tailwind.config.js` needed
+- CSS entry point: `src/index.css` (imported in `src/main.tsx`)
+- Use Tailwind utility classes directly in JSX `className` attributes
+- Avoid custom CSS files — prefer Tailwind utilities and composing classes
+- Use `@theme` in `src/index.css` to extend the default design tokens if needed
 
 ### TypeScript
 
@@ -111,6 +121,7 @@ export default ComponentName;
 | `src/components/Hero.tsx`     | Landing hero section                 |
 | `src/components/Features.tsx` | Features showcase section            |
 | `package.json`                | Dependencies and scripts             |
+| `src/index.css`              | Tailwind CSS entry point             |
 | `vite.config.ts`             | Build and dev server configuration   |
 | `tsconfig.app.json`          | TypeScript compiler settings         |
 
@@ -128,5 +139,4 @@ export default ComponentName;
 
 - No test framework configured
 - No linting (ESLint/Prettier)
-- No CSS framework (Tailwind CSS planned)
 - No CI/CD pipeline
