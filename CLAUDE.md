@@ -128,9 +128,10 @@ export default ComponentName;
 
 ## CI/CD
 
-- **GitHub Actions** workflow at `.github/workflows/ci.yml`
-- Runs on pushes to `master` and all pull requests targeting `master`
-- Pipeline steps: lint, format check, type check, test, build
+- **CI** (`.github/workflows/ci.yml`) — runs on pushes to `master` and all PRs
+  - Pipeline: lint, format check, type check, test, build
+- **Deploy** (`.github/workflows/deploy.yml`) — deploys to GitHub Pages on push to `master`
+  - Live URL: `https://tareqkayyali.github.io/KYRAI/`
 - Node 20 with npm caching
 
 ## Git Workflow
@@ -160,7 +161,8 @@ export default ComponentName;
 | `tsconfig.app.json`          | TypeScript compiler settings         |
 | `eslint.config.js`          | ESLint flat config                   |
 | `.prettierrc`               | Prettier formatting rules            |
-| `.github/workflows/ci.yml` | GitHub Actions CI pipeline           |
+| `.github/workflows/ci.yml`    | GitHub Actions CI pipeline           |
+| `.github/workflows/deploy.yml` | GitHub Pages deployment            |
 
 ## Guidelines for Contributors
 
