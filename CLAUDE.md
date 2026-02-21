@@ -126,6 +126,13 @@ export default ComponentName;
 - `noUnusedLocals` and `noUnusedParameters` enforced
 - Use the `react-jsx` transform — do not add `import React from 'react'`
 
+## CI/CD
+
+- **GitHub Actions** workflow at `.github/workflows/ci.yml`
+- Runs on pushes to `master` and all pull requests targeting `master`
+- Pipeline steps: lint, format check, type check, test, build
+- Node 20 with npm caching
+
 ## Git Workflow
 
 - **Main branch:** `master`
@@ -153,6 +160,7 @@ export default ComponentName;
 | `tsconfig.app.json`          | TypeScript compiler settings         |
 | `eslint.config.js`          | ESLint flat config                   |
 | `.prettierrc`               | Prettier formatting rules            |
+| `.github/workflows/ci.yml` | GitHub Actions CI pipeline           |
 
 ## Guidelines for Contributors
 
@@ -167,4 +175,4 @@ export default ComponentName;
 
 ## Current Gaps
 
-- No CI/CD pipeline
+- None — all core tooling is in place
